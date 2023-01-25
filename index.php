@@ -22,19 +22,31 @@
 <?php
   require_once('connectvars.php');
 
+  // Connect to the database 
+  $dbc = pg_connect(DBC_DATA); 
+
   // Generate the navigation menu
   if (isset($_SESSION['username'])) {
-    echo '<a href="viewprofile.php">View Profile</a><br />';
-    echo '<a href="editprofile.php">Edit Profile</a><br />';
+    $bh_username = pg_escape_string($dbc, trim($_SESSION['username']));
+  
+    $query = "SELECT \"Name\", \"Surname\", \"Gender\", \"Birthdate\", \"CollectedHeads\", \"Status\", \"Money\" FROM \"BountyHunters\" WHERE \"UserName\" = '$bh_username'";
+
+    $data = pg_query($dbc, $query);
+    $user_data = pg_fetch_array($data);
+    
+    echo '<p>Bounty Hunter: '. $user_data['Name'] . ' ' . $user_data['Surname'] . '</p>';  
+    echo '<p>Gender: ' . $user_data['Gender'] .'</p>';
+    echo '<p>Date of birth: ' . $user_data['Birthdate'] . '</p>';
+    echo '<p>Number of collected Bounty Heads: ' . $user_data['CollectedHeads'] . '</p>';
+    echo '<p>Status: ' .$user_data['Status'] . '</p>';
+    echo '<p>Money: ' . $user_data['Money'] . '</p>';
+
     echo '<a href="logout.php">Log Out (' . $_SESSION['username'] . ')</a>';
   }
   else {
     echo '<a href="login.php">Log In</a><br />';
     echo '<a href="signup.php">Sign Up</a>';
   }
-
-  // Connect to the database 
-  $dbc = pg_connect(DBC_DATA); 
 
   // Retrieve the user data from MySQL
   $query = "SELECT \"WarrantID\", \"Status\", \"Amount\", \"BountyHunterID\", \"PoliceStationID\" FROM \"Warrants\" WHERE \"Status\" LIMIT 5";

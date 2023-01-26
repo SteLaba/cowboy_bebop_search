@@ -1,0 +1,67 @@
+@font-face {
+    font-family: 'CCB';
+    src: url("fonts/Cheltenham Condensed Bold.ttf");
+} 
+
+body {
+  background: url("images/cowboy_bebop_logo.jpg") no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  font-family: 'CCB';
+}
+
+h1 {
+	position: relative;
+	font-size: 300%;
+    left: 37.5%;	
+}
+
+fieldset {
+	position: absolute;
+    top: 18%;
+    left: 40%;
+    margin-top: -50px;
+    margin-left: -50px;
+    width: 500px;
+    height: 680px;
+    font-size: 125%;
+}
+
+input[type="text"], input[type="password"], 
+input[type="number"], input[type="date"],
+select
+{
+    background-color: #e2ddc9;
+    height: 20px;
+    width: 98%;
+    font-size: 70%;
+}
+
+p
+{
+    position: absolute;
+    top: 76.9%;
+    left: 38.3%;
+}
+
+#success_id {
+    position: absolute;
+    top: 25%;
+    left: 38%;
+    margin-top: -50px;
+    margin-left: -50px;
+    font-size: 125%;
+}
+
+
+#submit {
+	position: relative;
+    top: 1%;
+    left: 80%;
+    height: 27px;
+    width: 20%;
+    font-size: 70%;
+    font-family: 'CCB';
+}

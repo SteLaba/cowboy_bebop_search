@@ -1,0 +1,98 @@
+@font-face {
+    font-family: 'CCB';
+    src: url("fonts/Cheltenham Condensed Bold.ttf");
+} 
+
+body {
+  background: url("images/bounty_hunter.png") no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  font-family: 'CCB';
+  color: whitesmoke;
+}
+
+h1 {
+	position: relative;
+	font-size: 300%;
+    left: 37.5%;	
+}
+
+caption {
+    border-top: solid;
+    border-left: solid;
+    border-right: solid;
+}
+
+#bh_info {
+    position: absolute;
+    top: 40%;
+    left: 5%;
+    margin-top: -50px;
+    margin-left: -50px;
+    font-size: 100%;
+}
+
+a {
+    position: relative;
+    left: 60%;
+}
+
+table {
+	position: absolute;
+    top: 10%;
+    left: 26%;
+    margin-top: -50px;
+    margin-left: -50px;
+    font-size: 125%;
+    border: solid;
+    border-collapse: collapse;
+}
+
+th {
+    border-right: solid;
+    margin: 0px;
+    padding-left: 6px;
+    padding-right: 6px;
+}
+
+th:last-child {
+    border-right: none;
+}
+
+td {
+    text-align: center;
+    border-top: solid;
+    border-right: solid;
+}
+td:last-child {
+    border-right: none;
+}
+
+input[type="text"], input[type="password"], 
+input[type="number"], input[type="date"],
+select
+{
+    background-color: #e2ddc9;
+    height: 20px;
+    width: 98%;
+    font-size: 70%;
+}
+
+#success_id {
+    position: absolute;
+    top: 25%;
+    left: 38%;
+    margin-top: -50px;
+    margin-left: -50px;
+    font-size: 125%;
+}
+
+a {
+    color: whitesmoke;
+}
+
+#submit {
+    font-family: 'CCB';
+}

@@ -1,0 +1,106 @@
+@font-face {
+    font-family: 'CCB';
+    src: url("fonts/Cheltenham Condensed Bold.ttf");
+} 
+
+body {
+  background: url("images/police_station_logo.jpeg") no-repeat top right fixed;
+  background-color: #191919;
+  font-family: 'CCB';
+  color: whitesmoke;
+}
+
+h1 {
+	position: relative;
+	font-size: 300%;
+    left: 22%;	
+}
+
+#logout {
+    position: absolute;
+    right: 6%;
+    top: 38%;
+    color: whitesmoke;
+}
+
+#remove {
+    color: whitesmoke;
+}
+
+table {
+    position: absolute;
+    top: 13%;
+    left: 15%;
+    border: thin solid;
+    border-collapse: collapse;
+}
+caption {
+    border-top: thin solid;
+    border-left: thin solid;
+    border-right: thin solid;
+    border-collapse: collapse;
+}
+th {
+    border-bottom: thin solid;
+    padding-left: 6px;
+    padding-right: 6px;
+}
+td {
+    text-align: center;
+}
+
+fieldset {
+    position: absolute;
+    top: 18%;
+    left: 40%;
+    margin-top: -50px;
+    margin-left: -50px;
+    width: 500px;
+    height: 680px;
+    font-size: 125%;
+}
+
+input[type="text"], input[type="password"], 
+input[type="number"], input[type="date"]
+{
+    background-color: #1F1F1F;
+    color: whitesmoke;
+    height: 20px;
+    width: 98%;
+    font-size: 70%;
+}
+
+select {
+    background-color: #1F1F1F;
+    color: whitesmoke;
+    height: 24px;
+    width: 99.5%;
+    font-size: 70%;
+}
+
+p
+{
+    position: absolute;
+    top: 76.9%;
+    left: 38.3%;
+}
+
+#success_id {
+    position: absolute;
+    top: 25%;
+    left: 38%;
+    margin-top: -50px;
+    margin-left: -50px;
+    font-size: 125%;
+}
+
+
+#submit {
+    position: relative;
+    top: 1%;
+    left: 80%;
+    height: 27px;
+    width: 20%;
+    font-size: 70%;
+    font-family: 'CCB';
+}

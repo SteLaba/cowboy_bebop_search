@@ -16,20 +16,25 @@
       // Grab the user-entered log-in data
       $user_username = pg_escape_string($dbc, trim($_POST['username']));
       $user_password = pg_escape_string($dbc, trim($_POST['password']));
-
+      
       if (!empty($user_username) && !empty($user_password)) {
         // Look up the username and password in the database
-        $query = "SELECT \"BountyHunterID\", \"UserName\" FROM \"BountyHunters\" WHERE \"UserName\" = '$user_username' AND \"Password\" = '$user_password'";
+        $query = "SELECT \"LoginID\", \"Username\", \"isAdmin\"::int FROM \"Login\" WHERE \"Username\" = '$user_username' AND \"Password\" = '$user_password'";
         $data = pg_query($dbc, $query);
 
-        if ($data && pg_num_rows($data) == 1) {
+        if (pg_num_rows($data) == 1) {
           // The log-in is OK so set the user ID and username session vars (and cookies), and redirect to the home page
           $row = pg_fetch_array($data);
-          $_SESSION['user_id'] = $row['BountyHunterID'];
-          $_SESSION['username'] = $row['UserName'];
+          $_SESSION['user_id'] = $row['LoginID'];
+          $_SESSION['username'] = $row['Username'];
+          $_SESSION['is_admin'] = (bool)$row['isAdmin'];
           setcookie('user_id', $row['BountyHunterID'], time() + (60 * 60 * 24 * 30));    // expires in 30 days
           setcookie('username', $row['UserName'], time() + (60 * 60 * 24 * 30));  // expires in 30 days
-          $home_url = 'http://' . $_SERVER['HTTP_HOST'] . dirname($_SERVER['PHP_SELF']) . '/index.php';
+          if (!$_SESSION['is_admin']) {
+            $home_url = 'http://' . $_SERVER['HTTP_HOST'] . dirname($_SERVER['PHP_SELF']) . '/index.php';
+          } else {
+            $home_url = 'http://' . $_SERVER['HTTP_HOST'] . dirname($_SERVER['PHP_SELF']) . '/policestation.php';
+          }
           header('Location: ' . $home_url);
         }
         else {
@@ -50,10 +55,10 @@
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
   <title>Bounty Hunters - Log In</title>
-  <link rel="stylesheet" type="text/css" href="style.css" />
+  <link rel="stylesheet" type="text/css" href="login_style.css" />
 </head>
 <body>
-  <h3>Bounty Hunters - Log In</h3>
+  <h1>Bounty Hunters</h1>
 
 <?php
   // If the session var is empty, show any error message and the log-in form; otherwise confirm the log-in
@@ -68,8 +73,9 @@
       <input type="text" name="username" value="<?php if (!empty($user_username)) echo $user_username; ?>" /><br />
       <label for="password">Password:</label>
       <input type="password" name="password" />
+      <a href="signup.php">Sign up.</a><br>
+      <input type="submit" value="Log In" id="submit" name="submit" />
     </fieldset>
-    <input type="submit" value="Log In" name="submit" />
   </form>
 
 <?php
